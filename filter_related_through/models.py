@@ -12,7 +12,13 @@ class Profession(models.Model):
 
 class UserProfession(models.Model):
     user = models.ForeignKey(
-        User, related_name="professions", on_delete=models.CASCADE, db_index=True
-    )
-    profession = models.ForeignKey(Profession, blank=True, null=True, on_delete=models.CASCADE)
+        User,
+        related_name="professions", on_delete=models.CASCADE, db_index=True)
+    profession = models.ForeignKey(
+        Profession, blank=True, null=True, on_delete=models.CASCADE)
     period = DateTimeRangeField()
+
+# FilteredRelation
+# ringo = User.objects.create(name='Ringo Starr')
+# drummer = Profession.objects.create(name='drummer')
+# drummer.users.add(ringo, through_defaults={"period": DateTimeTZRange('2020-01-01')})
